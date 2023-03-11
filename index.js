@@ -68,7 +68,7 @@ class DeviceMonitor {
           if(this.ignoreLAN && ipUtils.isPrivate(ret.info.dstaddr)){
             return;
           }
-          if (ret.info.srcaddr !== this.device.ipv4) {
+          if (!this.device.addresses.some((a) => a.addr === ret.info.srcaddr)) {
             this.totalRx += size;
           } else {
             this.totalTx += size;
